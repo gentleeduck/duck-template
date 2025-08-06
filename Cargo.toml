@@ -2,6 +2,13 @@
 name = "duck-template"
 version = "0.1.0"
 edition = "2024"
+description = "A cli tool for generating files from a template just with a json file"
+license = "MIT"     
+repository = "https://github.com/gentleeduck/duck-template"  
+readme = "README.md"
+categories = ["command-line-utilities"]
+keywords = ["cli", "tool", "template"]
+
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
