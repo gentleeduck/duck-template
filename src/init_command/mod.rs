@@ -97,7 +97,7 @@ pub fn init_command(init: &Init) {
   // Write to file
   match std::fs::write(&format!("{}-template.json", init.name), json) {
     Ok(_) => {
-      log(LogLevel::Info, "✅ Project initialized successfully.");
+      log(LogLevel::Info, "🦆 Project initialized successfully.");
     },
     Err(e) => log(
       LogLevel::Error,
