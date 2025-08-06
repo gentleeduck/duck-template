@@ -10,9 +10,11 @@
 
 - 🧱 **Template-based project scaffolding**
 - ⚙️ **Powerful `init` and `create` commands**
+- 🧠 **Shared flag parsing with `get_flag_value` abstraction**
 - 📦 **JSON-based configuration support**
 - 🪶 **Written in Rust — lightweight and blazing fast**
 - 💬 **Helpful logging and error messages**
+
 
 ---
 
