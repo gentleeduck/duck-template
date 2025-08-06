@@ -1,14 +1,11 @@
+use crate::create_command::create_structure::Create;
+use crate::logger::{log, LogLevel};
+use crate::parse_commands::get_flag_value::get_flag_value;
 use std::collections::HashMap;
 
-use crate::{
-  create_command::create_structure::Create,
-  logger::{log, LogLevel},
-};
-
-/// Parse 'create' subcommand options
 pub fn parse_create(args: &[String], mut idx: usize) -> (Create, usize) {
   let mut variant = String::new();
-  let mut outdir = String::from("./");
+  let mut outdir = String::new();
   let mut cli_args = HashMap::new();
   let mut config = String::new();
 
@@ -16,11 +13,28 @@ pub fn parse_create(args: &[String], mut idx: usize) -> (Create, usize) {
     match args[idx].as_str() {
       "--variant" | "-v" => {
         idx += 1;
-        if let Some(val) = args.get(idx) {
-          variant = val.clone();
+        if let Some(val) = get_flag_value(args, idx, "--variant") {
+          variant = val;
         }
         idx += 1;
       },
+
+      "--outdir" | "-d" => {
+        idx += 1;
+        if let Some(val) = get_flag_value(args, idx, "--outdir") {
+          outdir = val;
+        }
+        idx += 1;
+      },
+
+      "--config" | "-c" => {
+        idx += 1;
+        if let Some(val) = get_flag_value(args, idx, "--config") {
+          config = val;
+        }
+        idx += 1;
+      },
+
       "--args" | "-a" => {
         idx += 1;
         if let Some(arg_pair) = args.get(idx) {
@@ -33,20 +47,8 @@ pub fn parse_create(args: &[String], mut idx: usize) -> (Create, usize) {
               &format!("Invalid args format, expected key=value: {}", arg_pair),
             );
           }
-        }
-        idx += 1;
-      },
-      "--outdir" | "-d" => {
-        idx += 1;
-        if let Some(val) = args.get(idx) {
-          outdir = val.clone();
-        }
-        idx += 1;
-      },
-      "--config" | "-c" => {
-        idx += 1;
-        if let Some(val) = args.get(idx) {
-          config = val.clone();
+        } else {
+          log(LogLevel::Error, "Expected key=value pair after '--args'");
         }
         idx += 1;
       },

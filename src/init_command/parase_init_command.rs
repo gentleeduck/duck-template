@@ -1,8 +1,9 @@
 use crate::{
   init_command::init_structure::Init,
   logger::{log, LogLevel},
+  parse_commands::get_flag_value::get_flag_value,
 };
-/// Parse 'init' subcommand options
+
 pub fn parse_init(args: &[String], mut idx: usize) -> (Init, usize) {
   let mut name = String::new();
 
@@ -10,8 +11,8 @@ pub fn parse_init(args: &[String], mut idx: usize) -> (Init, usize) {
     match args[idx].as_str() {
       "--name" | "-n" => {
         idx += 1;
-        if let Some(val) = args.get(idx) {
-          name = val.clone();
+        if let Some(val) = get_flag_value(args, idx, "--name") {
+          name = val;
         }
         idx += 1;
       },
@@ -19,7 +20,7 @@ pub fn parse_init(args: &[String], mut idx: usize) -> (Init, usize) {
       _ => {
         log(
           LogLevel::Error,
-          &format!("Unrecognized init flag: {}", args[idx]),
+          &format!("👉 Unrecognized init flag: {}", args[idx]),
         );
         idx += 1;
       },

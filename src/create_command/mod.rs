@@ -63,7 +63,7 @@ pub fn create_command(create: &Create) {
 
   log(
     LogLevel::Success,
-    &format!("✅ Project created at {}", outdir_path.display()),
+    &format!("🎉 Project created at {}", outdir_path.display()),
   );
   log(
     LogLevel::Success,
@@ -88,7 +88,7 @@ pub fn render_source(src: &[Source], outdir: &Path, cli_args: &HashMap<String, S
 
         log(
           LogLevel::Info,
-          &format!("📄 Writing file: {}", file_path.display()),
+          &format!("👉 📄 Writing file: {}", file_path.display()),
         );
 
         std::fs::write(&file_path, final_content).expect("❌ Failed to write file");
@@ -99,7 +99,7 @@ pub fn render_source(src: &[Source], outdir: &Path, cli_args: &HashMap<String, S
 
         log(
           LogLevel::Info,
-          &format!("📂 Creating folder: {}", folder_path.display()),
+          &format!("👉 📂 Creating folder: {}", folder_path.display()),
         );
 
         std::fs::create_dir_all(&folder_path).expect("❌ Failed to create folder");
