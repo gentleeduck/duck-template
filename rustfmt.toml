@@ -1,0 +1,46 @@
+# rustfmt.toml
+
+# Indentation
+hard_tabs = false
+tab_spaces = 2
+tab_width = 2
+
+# Line width
+max_width = 100
+
+# Reorder imports alphabetically
+reorder_imports = true
+
+# Remove extra blank lines
+blank_lines_upper_bound = 2
+blank_lines_lower_bound = 0
+
+# Format code inside macros
+format_macro_matchers = true
+format_macro_bodies = true
+
+# Control how match arms are formatted
+match_block_trailing_comma = true
+match_arm_leading_pipes = "Preserve"
+
+# Force trailing commas where valid
+trailing_comma = "Always"
+
+# Group imports using `use self::...`
+imports_granularity = "Crate"
+group_imports = "StdExternalCrate"
+
+# Reorder struct fields and enum variants
+reorder_impl_items = true
+
+# Control spaces inside array/tuple literals
+space_after_colon = true
+space_before_colon = false
+
+# Preserve or remove comments in formatted code
+normalize_comments = true
+
+# Automatically format on save (if using rust-analyzer or VSCode)
+edition = "2021"
+
+
