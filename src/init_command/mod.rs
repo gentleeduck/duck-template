@@ -18,7 +18,7 @@ pub fn init_command(init: &Init) {
   args.insert("name".to_string(), init.name.clone());
 
   let template = Config {
-        schema: "https://duckduckgo.com/duckduckgo.json".to_string(),
+        schema: "https://zpgqhogoevbgpxustvmo.supabase.co/storage/v1/object/public/json/duck-template-schema.json".to_string(),
         name: init.name.clone(),
         version: "0.1.0".to_string(),
         description: "Wise decisions, powered by types.".to_string(),
@@ -62,7 +62,7 @@ pub fn init_command(init: &Init) {
   }
 }"#
                         .to_string(),
-                        args: None,
+                        args: Some(vec![]),
                     }),
                     // src folder + index.ts
                     Source::Folder(Folder {
@@ -84,7 +84,7 @@ pub fn init_command(init: &Init) {
                     Source::File(File {
                         path: ".gitignore".to_string(),
                         content: "node_modules/\ndist/".to_string(),
-                        args: None,
+                        args: Some(vec![]),
                     }),
                 ],
             },
