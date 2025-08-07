@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-  use crate::logger::{log, LogLevel};
+  use crate::logger::{LogLevel, log};
 
   #[test]
   fn test_log_levels() {

@@ -2,18 +2,18 @@ mod __test__;
 pub mod commands_structure;
 pub mod get_flag_value;
 
+use std::collections::HashMap;
+
 use crate::{
   create_command::create_structure::Create,
   create_variant_command::create_variant_structure::CreateVariant,
   init_command::init_structure::Init,
-  logger::{log, LogLevel},
+  logger::{LogLevel, log},
   parse_commands::{
     commands_structure::GLOBAL_FLAGS,
     get_flag_value::{find_command, find_flag},
   },
 };
-
-use std::collections::HashMap;
 
 #[derive(Debug, Clone)]
 pub enum Command {

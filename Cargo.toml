@@ -1,6 +1,6 @@
 [package]
 name = "duck-template"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2024"
 description = "A cli tool for generating files from a template just with a json file"
 license = "MIT"     

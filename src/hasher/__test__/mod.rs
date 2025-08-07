@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-  use crate::hasher::{generate_id, CHARSET};
+  use crate::hasher::{CHARSET, generate_id};
 
   #[test]
   fn test_generate_id_length() {

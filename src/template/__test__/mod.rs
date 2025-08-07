@@ -1,12 +1,17 @@
 #[cfg(test)]
 mod tests {
-  use crate::config::config_structure::Source;
-  use crate::template::{parse_source, replace_args};
+  use std::{
+    collections::HashMap,
+    fs::{self, create_dir},
+    io::Write,
+  };
 
-  use std::collections::HashMap;
-  use std::fs::{self, create_dir};
-  use std::io::Write;
-  use tempfile::{tempdir, NamedTempFile};
+  use tempfile::{NamedTempFile, tempdir};
+
+  use crate::{
+    config::config_structure::Source,
+    template::{parse_source, replace_args},
+  };
 
   #[test]
   fn test_replace_args_basic() {
@@ -44,9 +49,10 @@ mod tests {
     let source = parse_source(path, root);
     match source {
       Source::File(f) => {
-        assert!(f
-          .path
-          .ends_with(file.path().file_name().unwrap().to_str().unwrap()));
+        assert!(
+          f.path
+            .ends_with(file.path().file_name().unwrap().to_str().unwrap())
+        );
         assert!(f.content.contains("duck = true"));
         assert_eq!(f.args, Some(vec![]));
       },

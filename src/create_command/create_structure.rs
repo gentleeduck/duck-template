@@ -1,9 +1,10 @@
-use serde::Serialize;
-use serde_json;
 use std::{collections::HashMap, process};
 
+use serde::Serialize;
+use serde_json;
+
 use crate::{
-  logger::{log, LogLevel},
+  logger::{LogLevel, log},
   parse_commands::{commands_structure::FlagHelp, get_flag_value::get_command_value},
 };
 
@@ -45,25 +46,25 @@ pub const CREATE_FLAGS: &[FlagHelp] = &[
   FlagHelp {
     long: "--variant",
     short: "-v",
-    description: "Template variant",
+    description: "Template variant to use. This allows selecting between different predefined configurations or templates (e.g., minimal, full, custom).",
     takes_value: true,
   },
   FlagHelp {
     long: "--outdir",
     short: "-d",
-    description: "Output directory",
+    description: "The output directory where generated files will be written. If not provided, defaults to the current working directory.",
     takes_value: true,
   },
   FlagHelp {
     long: "--config",
     short: "-c",
-    description: "Path to config file",
+    description: "Path to a local config file or a URL to a remote JSON config. The config defines variants, arguments, and other generation parameters.",
     takes_value: true,
   },
   FlagHelp {
     long: "--args",
     short: "-a",
-    description: "Extra arguments (key=value)",
+    description: "Extra arguments passed as key=value pairs. These can override or extend the values in the config file for dynamic customization.",
     takes_value: true,
   },
 ];

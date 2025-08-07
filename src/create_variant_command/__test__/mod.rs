@@ -1,10 +1,15 @@
 #[cfg(test)]
 mod tests {
-  use crate::create_variant_command::create_variant_command;
-  use crate::create_variant_command::create_variant_structure::CreateVariant;
-  use std::fs::{self, File};
-  use std::io::Write;
+  use std::{
+    fs::{self, File},
+    io::Write,
+  };
+
   use tempfile::tempdir;
+
+  use crate::create_variant_command::{
+    create_variant_command, create_variant_structure::CreateVariant,
+  };
 
   fn create_temp_config_file() -> (String, tempfile::TempDir) {
     let config = r#"

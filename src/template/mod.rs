@@ -3,7 +3,7 @@ use std::{collections::HashMap, fs, path::Path, process};
 
 use crate::{
   config::config_structure::{File, Folder, Source},
-  logger::{log, LogLevel},
+  logger::{LogLevel, log},
 };
 
 pub fn replace_args(content: &str, args: &HashMap<String, String>, file_args: &[String]) -> String {

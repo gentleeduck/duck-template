@@ -6,7 +6,7 @@ use serde_json;
 use crate::{
   config::config_structure::{Config, File, Folder, Source, Variant},
   init_command::init_structure::Init,
-  logger::{log, LogLevel},
+  logger::{LogLevel, log},
 };
 
 pub mod init_structure;

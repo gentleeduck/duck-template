@@ -1,13 +1,10 @@
 #[cfg(test)]
 mod tests {
-  use crate::create_command::create_command;
-  use crate::create_command::create_structure::Create;
+  use std::{collections::HashMap, fs, fs::File, io::Write};
 
-  use std::collections::HashMap;
-  use std::fs;
-  use std::fs::File;
-  use std::io::Write;
   use tempfile::tempdir;
+
+  use crate::create_command::{create_command, create_structure::Create};
 
   fn sample_config_json() -> String {
     r#"

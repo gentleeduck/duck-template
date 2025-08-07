@@ -1,11 +1,11 @@
 #[cfg(test)]
 mod tests {
-  use crate::config::get_config;
-
-  use httpmock::Method::GET;
-  use httpmock::MockServer;
   use std::io::Write;
+
+  use httpmock::{Method::GET, MockServer};
   use tempfile::NamedTempFile;
+
+  use crate::config::get_config;
 
   fn sample_config_json() -> String {
     r#"

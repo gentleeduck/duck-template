@@ -5,9 +5,8 @@ mod tests {
   use std::collections::HashMap;
 
   use crate::parse_commands::{
-    get_commands,
+    Command, get_commands,
     get_flag_value::{find_command, find_flag, get_command_value},
-    Command,
   };
 
   #[test]

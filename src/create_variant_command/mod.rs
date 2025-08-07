@@ -4,7 +4,7 @@ use std::{error::Error, path::Path};
 use crate::{
   config::{config_structure::Variant, read_config, serialize_config, write_config},
   hasher::generate_id,
-  logger::{log, LogLevel},
+  logger::{LogLevel, log},
   template::parse_source,
 };
 

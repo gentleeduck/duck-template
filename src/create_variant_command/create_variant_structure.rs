@@ -1,5 +1,6 @@
-use serde::Serialize;
 use std::collections::HashMap;
+
+use serde::Serialize;
 
 use crate::parse_commands::{commands_structure::FlagHelp, get_flag_value::get_command_value};
 
@@ -26,25 +27,25 @@ pub const CREATE_VARIANT_FLAGS: &[FlagHelp] = &[
   FlagHelp {
     long: "--source",
     short: "-s",
-    description: "Variant source",
+    description: "Path to the source files or directory that defines the contents of the variant. This will be used as the base for the new variant.",
     takes_value: true,
   },
   FlagHelp {
     long: "--config",
     short: "-c",
-    description: "Variant config",
+    description: "Optional path to a JSON config file that defines metadata or arguments for the variant (e.g., default values, validation rules).",
     takes_value: true,
   },
   FlagHelp {
     long: "--name",
     short: "-n",
-    description: "Variant name",
+    description: "Unique name to identify the variant. This name will be used in the template selection and must not conflict with existing variants.",
     takes_value: true,
   },
   FlagHelp {
     long: "--description",
-    short: "-n",
-    description: "Variant description",
+    short: "-d",
+    description: "A short human-readable description for the variant, explaining its purpose or differences from other variants.",
     takes_value: true,
   },
 ];

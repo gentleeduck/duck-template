@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+make          # runs check, format, test, build
+make test     # runs tests
+make release  # builds optimized binary
+

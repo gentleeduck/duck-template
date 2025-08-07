@@ -1,14 +1,14 @@
 mod __test__;
 pub mod create_structure;
 
-use std::collections::HashMap;
-use std::path::Path;
+use std::{collections::HashMap, path::Path};
 
-use crate::config::config_structure::Source;
-use crate::config::get_config;
-use crate::create_command::create_structure::Create;
-use crate::logger::{log, LogLevel};
-use crate::template::replace_args;
+use crate::{
+  config::{config_structure::Source, get_config},
+  create_command::create_structure::Create,
+  logger::{LogLevel, log},
+  template::replace_args,
+};
 
 pub fn create_command(create: &Create) {
   log(LogLevel::Info, "🛠 Creating project...");

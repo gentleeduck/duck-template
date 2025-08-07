@@ -17,7 +17,7 @@ use url::Url;
 
 use crate::{
   config::{config_structure::Config, fetch_config::curl_if_valid_url},
-  logger::{log, LogLevel},
+  logger::{LogLevel, log},
 };
 
 pub fn get_config(config: &String) -> Config {

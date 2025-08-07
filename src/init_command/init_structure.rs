@@ -17,6 +17,6 @@ impl Init {
 pub const INIT_FLAGS: &[FlagHelp] = &[FlagHelp {
   long: "--name",
   short: "-n",
-  description: "Project name",
+  description: "Name of the project to initialize. This will be used to create the project directory and may also be written into config or metadata files.",
   takes_value: true,
 }];

@@ -8,15 +8,17 @@ mod logger;
 mod parse_commands;
 mod template;
 
-use crate::create_command::create_command;
-use crate::create_variant_command::create_variant_command;
-use crate::help_command::execute_help_command;
-use crate::init_command::init_command;
-use crate::logger::{log, LogLevel};
-use crate::parse_commands::{get_commands, Command};
+use crate::{
+  create_command::create_command,
+  create_variant_command::create_variant_command,
+  help_command::execute_help_command,
+  init_command::init_command,
+  logger::{LogLevel, log},
+  parse_commands::{Command, get_commands},
+};
 
 const CLI_NAME: &str = "@duck-template";
-const CLI_VERSION: &str = "1.0.2";
+const CLI_VERSION: &str = "1.0.3";
 const CLI_DESCRIPTION: &str = "Generate and manage project templates with ease";
 
 fn main() {

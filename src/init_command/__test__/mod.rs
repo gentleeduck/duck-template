@@ -1,11 +1,11 @@
 #[cfg(test)]
 mod tests {
-  use crate::config::config_structure::Config;
-  use crate::init_command::init_command;
-  use crate::init_command::init_structure::Init;
+  use std::{fs, path::Path};
 
-  use std::fs;
-  use std::path::Path;
+  use crate::{
+    config::config_structure::Config,
+    init_command::{init_command, init_structure::Init},
+  };
 
   #[test]
   fn test_init_command_creates_template_file() {
