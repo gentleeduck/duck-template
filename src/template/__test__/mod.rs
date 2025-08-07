@@ -6,7 +6,7 @@ mod tests {
     io::Write,
   };
 
-  use tempfile::{tempdir, NamedTempFile};
+  use tempfile::{NamedTempFile, tempdir};
 
   use crate::{
     config::config_structure::Source,
@@ -49,9 +49,10 @@ mod tests {
     let source = parse_source(path, root, &vec![]);
     match source {
       Source::File(f) => {
-        assert!(f
-          .path
-          .ends_with(file.path().file_name().unwrap().to_str().unwrap()));
+        assert!(
+          f.path
+            .ends_with(file.path().file_name().unwrap().to_str().unwrap())
+        );
         assert!(f.content.contains("duck = true"));
         assert_eq!(f.args, Some(vec![]));
       },
