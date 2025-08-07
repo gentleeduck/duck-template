@@ -3,6 +3,7 @@ pub mod get_flag_value;
 
 use crate::{
   create_command::create_structure::Create,
+  create_variant_command::create_variant_structure::CreateVariant,
   init_command::init_structure::Init,
   logger::{log, LogLevel},
   parse_commands::{
@@ -17,6 +18,7 @@ use std::collections::HashMap;
 pub enum Command {
   Init(Init),
   Create(Create),
+  CreateVariant(CreateVariant),
   Help,
   Version,
   Unknown(String),
@@ -94,6 +96,9 @@ pub fn get_commands(args: Vec<String>) -> Vec<Command> {
         match command_def.command {
           "init" => commands.push(Command::Init(Init::from_args(&cmd_args))),
           "create" => commands.push(Command::Create(Create::from_args(&cmd_args))),
+          "create-variant" => {
+            commands.push(Command::CreateVariant(CreateVariant::from_args(&cmd_args)))
+          },
           other => commands.push(Command::Unknown(other.to_string())),
         }
       },

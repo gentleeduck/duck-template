@@ -68,7 +68,14 @@ pub fn execute_help_command(cli_name: &str, cli_description: &str, cli_version: 
   // Examples
   println!("EXAMPLES:");
   println!("    {} init --name my-app", cli_name);
-  println!("    {} create -v rust-template", cli_name);
+  println!(
+    "    {} create -v rust-template -c ./template-config.json",
+    cli_name
+  );
+  println!(
+    "    {} cargo run -- create-variant -s ./template-test -c ./template-config.json",
+    cli_name
+  );
   println!("    {} --help\n", cli_name);
 }
 

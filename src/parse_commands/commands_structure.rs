@@ -1,3 +1,9 @@
+use crate::{
+  create_command::create_structure::CREATE_FLAGS,
+  create_variant_command::create_variant_structure::CREATE_VARIANT_FLAGS,
+  init_command::init_structure::INIT_FLAGS,
+};
+
 pub struct FlagHelp {
   pub long: &'static str,
   pub short: &'static str,
@@ -26,40 +32,6 @@ pub const GLOBAL_FLAGS: &[FlagHelp] = &[
   },
 ];
 
-pub const CREATE_FLAGS: &[FlagHelp] = &[
-  FlagHelp {
-    long: "--variant",
-    short: "-v",
-    description: "Template variant",
-    takes_value: true,
-  },
-  FlagHelp {
-    long: "--outdir",
-    short: "-d",
-    description: "Output directory",
-    takes_value: true,
-  },
-  FlagHelp {
-    long: "--config",
-    short: "-c",
-    description: "Path to config file",
-    takes_value: true,
-  },
-  FlagHelp {
-    long: "--args",
-    short: "-a",
-    description: "Extra arguments (key=value)",
-    takes_value: true,
-  },
-];
-
-pub const INIT_FLAGS: &[FlagHelp] = &[FlagHelp {
-  long: "--name",
-  short: "-n",
-  description: "Project name",
-  takes_value: true,
-}];
-
 pub const ALL_COMMANDS: &[CommandHelp] = &[
   CommandHelp {
     command: "init",
@@ -70,5 +42,10 @@ pub const ALL_COMMANDS: &[CommandHelp] = &[
     command: "create",
     description: "Creates a new template",
     flags: CREATE_FLAGS,
+  },
+  CommandHelp {
+    command: "create-variant",
+    description: "Creates a new template variant",
+    flags: CREATE_VARIANT_FLAGS,
   },
 ];

@@ -10,6 +10,7 @@ pub struct Config {
   pub description: String,
   pub outdir: Option<String>,
   pub variants: Vec<Variant>,
+  #[serde(default)]
   pub args: Option<HashMap<String, String>>,
 }
 

@@ -8,13 +8,12 @@
 
 ## ✨ Features
 
-- 🧱 **Template-based project scaffolding**
-- ⚙️ **Powerful `init` and `create` commands**
-- 🧠 **Shared flag parsing with `get_flag_value` abstraction**
-- 📦 **JSON-based configuration support**
-- 🪶 **Written in Rust — lightweight and blazing fast**
-- 💬 **Helpful logging and error messages**
-
+* 🧱 **Template-based project scaffolding**
+* ⚙️ **Flexible `init` and `create` commands**
+* 🧠 **Unified flag parsing via `get_flag_value`**
+* 📦 **JSON-driven configuration system**
+* 🪶 **Written in Rust — lightweight and blazing fast**
+* 💬 **Helpful logs and friendly error messages**
 
 ---
 
@@ -22,13 +21,13 @@
 
 ```bash
 cargo install duck-template
-````
+```
 
 ---
 
 ## 🚀 Usage
 
-### Initialize a new project
+### 🔧 Initialize a new project
 
 ```bash
 duck-template init --name my-app
@@ -36,11 +35,13 @@ duck-template init --name my-app
 
 This will:
 
-* Read your `duck-template.json` config
-* Create a new output folder with the structure defined in the template
-* Inject any CLI-provided values (e.g. `--name`) into the template
+* Create a new folder using your template
+* Inject values like `--name` into templated files
+* Use your local or default `duck-template.json`
 
-### Create a variant from your config
+---
+
+### 🏗️ Create a variant
 
 ```bash
 duck-template create --variant api
@@ -48,14 +49,14 @@ duck-template create --variant api
 
 This will:
 
-* Select a template variant defined in your config file
-* Generate the corresponding output structure
+* Pick a variant defined in your JSON config
+* Generate all related files and folders into the specified `outdir`
 
 ---
 
 ## 🧩 Configuration
 
-The CLI expects a JSON config file like this:
+The CLI expects a `duck-template.json` config file like:
 
 ```json
 {
@@ -77,11 +78,11 @@ The CLI expects a JSON config file like this:
 }
 ```
 
-You can define:
+Key fields:
 
-* `variants`: groups of files or folders
-* `outdir`: where the output should be created
-* `template`: reuse external files and inject dynamic variables
+* `variants`: List of available build targets
+* `outdir`: Target directory for output
+* `template`: File injection with variable placeholders (`{{name}}`)
 
 ---
 
@@ -91,8 +92,9 @@ You can define:
 duck-template init --name wiseman
 ```
 
+Given this config:
+
 ```json
-// duck-template.json
 {
   "name": "wiseman",
   "outdir": "./output",
@@ -107,30 +109,30 @@ duck-template init --name wiseman
 }
 ```
 
-Results in:
+You’ll get:
 
 ```
 output/
 └── src/
-    └── main.ts // => console.log("wiseman is wise");
+    └── main.ts   // console.log("wiseman is wise");
 ```
 
 ---
 
-## 🛠 Commands
+## 🛠️ Commands
 
-| Command   | Description                             |
-| --------- | --------------------------------------- |
-| `init`    | Initializes a new template project      |
-| `create`  | Generates output from a defined variant |
-| `help`    | Shows the help menu                     |
-| `version` | Prints the CLI version                  |
+| Command     | Description                             |
+| ----------- | --------------------------------------- |
+| `init`      | Initializes a new template project      |
+| `create`    | Generates output from a defined variant |
+| `--help`    | Displays help information               |
+| `--version` | Prints the current version              |
 
 ---
 
 ## 🔐 License
 
-Licensed under either of:
+Licensed under either:
 
 * MIT License
 * Apache License, Version 2.0
@@ -139,8 +141,8 @@ Licensed under either of:
 
 ## 💬 Feedback / Contributions
 
-Feel free to open issues, request features, or contribute via pull requests.
+Feel free to open issues, request features, or submit a pull request.
 
 ---
 
-> 🦆 **duck-template** — because smart devs don't start from scratch every time.
+> 🦆 **duck-template** — because smart devs don’t start from scratch.

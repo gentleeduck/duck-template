@@ -2,7 +2,10 @@ use serde::Serialize;
 use serde_json;
 use std::{collections::HashMap, process};
 
-use crate::logger::{log, LogLevel};
+use crate::{
+  logger::{log, LogLevel},
+  parse_commands::{commands_structure::FlagHelp, get_flag_value::get_command_value},
+};
 
 #[derive(Debug, Clone, Serialize)]
 pub struct Create {
@@ -30,19 +33,37 @@ impl Create {
       });
 
     Self {
-      variant: raw_args
-        .get("--variant")
-        .cloned()
-        .unwrap_or_else(|| raw_args.get("-v").cloned().unwrap_or_default()),
-      outdir: raw_args
-        .get("--outdir")
-        .cloned()
-        .unwrap_or_else(|| raw_args.get("-o").cloned().unwrap_or_default()),
-      config: raw_args
-        .get("--config")
-        .cloned()
-        .unwrap_or_else(|| raw_args.get("-c").cloned().unwrap_or_default()),
+      variant: get_command_value("--variant", "-v", raw_args),
+      outdir: get_command_value("--outidr", "-o", raw_args),
+      config: get_command_value("--config", "-c", raw_args),
       args: args_map,
     }
   }
 }
+
+pub const CREATE_FLAGS: &[FlagHelp] = &[
+  FlagHelp {
+    long: "--variant",
+    short: "-v",
+    description: "Template variant",
+    takes_value: true,
+  },
+  FlagHelp {
+    long: "--outdir",
+    short: "-d",
+    description: "Output directory",
+    takes_value: true,
+  },
+  FlagHelp {
+    long: "--config",
+    short: "-c",
+    description: "Path to config file",
+    takes_value: true,
+  },
+  FlagHelp {
+    long: "--args",
+    short: "-a",
+    description: "Extra arguments (key=value)",
+    takes_value: true,
+  },
+];

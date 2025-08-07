@@ -4,13 +4,12 @@ use std::collections::HashMap;
 use std::path::Path;
 
 use crate::config::config_structure::Source;
-use crate::config::read_config::{read_config, serialize_config};
+use crate::config::{read_config, serialize_config};
 use crate::create_command::create_structure::Create;
 use crate::logger::{log, LogLevel};
 use crate::template::replace_args;
 
 pub fn create_command(create: &Create) {
-  println!("create: {:#?}", create);
   log(LogLevel::Info, "🛠 Creating project...");
 
   if create.config.is_empty() {
