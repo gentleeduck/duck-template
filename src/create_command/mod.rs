@@ -10,6 +10,7 @@ use crate::logger::{log, LogLevel};
 use crate::template::replace_args;
 
 pub fn create_command(create: &Create) {
+  println!("create: {:#?}", create);
   log(LogLevel::Info, "🛠 Creating project...");
 
   if create.config.is_empty() {

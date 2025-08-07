@@ -2,6 +2,8 @@ pub mod commands_structure;
 pub mod get_flag_value;
 
 use crate::{
+  create_command::create_structure::Create,
+  init_command::init_structure::Init,
   logger::{log, LogLevel},
   parse_commands::{
     commands_structure::GLOBAL_FLAGS,
@@ -13,8 +15,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Clone)]
 pub enum Command {
-  Init(HashMap<String, String>),
-  Create(HashMap<String, String>),
+  Init(Init),
+  Create(Create),
   Help,
   Version,
   Unknown(String),
@@ -90,8 +92,8 @@ pub fn get_commands(args: Vec<String>) -> Vec<Command> {
           }
         }
         match command_def.command {
-          "init" => commands.push(Command::Init(cmd_args)),
-          "create" => commands.push(Command::Create(cmd_args)),
+          "init" => commands.push(Command::Init(Init::from_args(&cmd_args))),
+          "create" => commands.push(Command::Create(Create::from_args(&cmd_args))),
           other => commands.push(Command::Unknown(other.to_string())),
         }
       },

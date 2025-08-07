@@ -11,7 +11,10 @@ use crate::{
 pub mod init_structure;
 
 pub fn init_command(init: &Init) {
-  log(LogLevel::Info, "🦆 Initializing project... {init.name}");
+  log(
+    LogLevel::Info,
+    &format!("🦆 Initializing project... {:?}", init.name),
+  );
 
   let mut args = HashMap::new();
   args.insert("name".to_string(), init.name.clone());
