@@ -1,5 +1,4 @@
 pub mod create_structure;
-pub mod parse_create_command;
 
 use std::collections::HashMap;
 use std::path::Path;

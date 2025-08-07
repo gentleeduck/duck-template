@@ -1,66 +1,83 @@
-use crate::parse_commands::{ALL_COMMANDS, ALL_FLAGS};
+use crate::parse_commands::commands_structure::{FlagHelp, ALL_COMMANDS, GLOBAL_FLAGS};
 
 pub fn execute_help_command(cli_name: &str, cli_description: &str, cli_version: &str) {
-  // Calculate maximum width for command names
   let max_command_width = ALL_COMMANDS
     .iter()
-    .map(|(cmd, _)| cmd.len())
+    .map(|cmd| cmd.command.len())
     .max()
     .unwrap_or(0);
 
-  // Calculate maximum width for flag names
-  let max_flag_width = ALL_FLAGS
+  let all_flags = GLOBAL_FLAGS
     .iter()
-    .map(|(flag, _)| flag.len())
+    .chain(ALL_COMMANDS.iter().flat_map(|cmd| cmd.flags.iter()));
+
+  let max_flag_width = all_flags
+    .clone()
+    .map(|flag| format_flag_with_aliases(flag).len())
     .max()
     .unwrap_or(0);
 
-  // Generate the COMMANDS section
-  let commands_section = ALL_COMMANDS
-    .iter()
-    .map(|(cmd, desc)| format!("    {:<width$}{}", cmd, desc, width = max_command_width + 2))
-    .collect::<Vec<_>>()
-    .join("\n");
+  // Header
+  println!("{} - {}", cli_name, cli_description);
+  println!("Version: {}\n", cli_version);
 
-  // Generate the FLAGS section
-  let flags_section = if !ALL_FLAGS.is_empty() {
-    ALL_FLAGS
-      .iter()
-      .map(|(flag, desc)| format!("    {:<width$}{}", flag, desc, width = max_flag_width + 2))
-      .collect::<Vec<_>>()
-      .join("\n")
+  // Commands
+  println!("COMMANDS:");
+  for cmd in ALL_COMMANDS {
+    println!(
+      "    {:<width$}{}",
+      cmd.command,
+      cmd.description,
+      width = max_command_width + 2
+    );
+  }
+  println!();
+
+  // Global flags
+  if !GLOBAL_FLAGS.is_empty() {
+    println!("GLOBAL FLAGS:");
+    for flag in GLOBAL_FLAGS {
+      let display_flag = format_flag_with_aliases(flag);
+      println!(
+        "    {:<width$}{}",
+        display_flag,
+        flag.description,
+        width = max_flag_width + 2
+      );
+    }
+    println!();
+  }
+
+  // Command-specific flags
+  for command in ALL_COMMANDS {
+    if !command.flags.is_empty() {
+      println!("FLAGS for '{}':", command.command);
+      for flag in command.flags {
+        let display_flag = format_flag_with_aliases(flag);
+        println!(
+          "    {:<width$}{}",
+          display_flag,
+          flag.description,
+          width = max_flag_width + 2
+        );
+      }
+      println!();
+    }
+  }
+
+  // Examples
+  println!("EXAMPLES:");
+  println!("    {} init --name my-app", cli_name);
+  println!("    {} create -v rust-template", cli_name);
+  println!("    {} --help\n", cli_name);
+}
+
+/// Formats a flag's short and long form into a string, with `<value>` if needed
+fn format_flag_with_aliases(flag: &FlagHelp) -> String {
+  let base = format!("{} | {}", flag.short, flag.long);
+  if flag.takes_value {
+    format!("{} <value>", base)
   } else {
-    String::from("    (none)")
-  };
-
-  // Example section
-  let examples = format!("    {0} init\n    {0} version\n    {0} help", cli_name);
-
-  // Final message
-  let message = format!(
-    "{cli} - {cli_description}
-
-VERSION: v{cli_version}
-
-USAGE:
-    {cli} <COMMAND> [OPTIONS]
-
-COMMANDS:
-{commands}
-
-FLAGS:
-{flags}
-
-EXAMPLES:
-{examples}
-",
-    cli = cli_name,
-    cli_description = cli_description,
-    cli_version = cli_version,
-    commands = commands_section,
-    flags = flags_section,
-    examples = examples
-  );
-
-  println!("{}", message);
+    base
+  }
 }

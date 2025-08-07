@@ -1,29 +1,11 @@
-use std::process;
+use crate::parse_commands::commands_structure::{CommandHelp, FlagHelp, ALL_COMMANDS};
 
-use crate::logger::{log, LogLevel};
+pub fn find_command(name: &str) -> Option<&'static CommandHelp> {
+  ALL_COMMANDS.iter().find(|cmd| cmd.command == name)
+}
 
-pub fn get_flag_value(args: &[String], idx: usize, flag: &str) -> Option<String> {
-  match args.get(idx) {
-    Some(val) if val.starts_with('-') => {
-      log(
-        LogLevel::Error,
-        &format!(
-          "Expected a value after '{}', but got another flag '{}'",
-          flag, val
-        ),
-      );
-      process::exit(1);
-    },
-    Some(val) => Some(val.clone()),
-    None => {
-      log(
-        LogLevel::Error,
-        &format!(
-          "Expected a value after '{}', but nothing was provided",
-          flag
-        ),
-      );
-      process::exit(1);
-    },
-  }
+pub fn find_flag<'a>(flags: &'a [FlagHelp], name: &str) -> Option<&'a FlagHelp> {
+  flags
+    .iter()
+    .find(|f| f.long == name || f.short.contains(&name))
 }

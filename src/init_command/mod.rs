@@ -9,10 +9,9 @@ use crate::{
 };
 
 pub mod init_structure;
-pub mod parase_init_command;
 
 pub fn init_command(init: &Init) {
-  println!("Initializing project: {}", init.name);
+  log(LogLevel::Info, "🦆 Initializing project... {init.name}");
 
   let mut args = HashMap::new();
   args.insert("name".to_string(), init.name.clone());
