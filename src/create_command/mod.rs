@@ -1,3 +1,4 @@
+mod __test__;
 pub mod create_structure;
 
 use std::collections::HashMap;

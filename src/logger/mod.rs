@@ -1,3 +1,4 @@
+mod __test__;
 pub enum LogLevel {
   Error,
   Warning,

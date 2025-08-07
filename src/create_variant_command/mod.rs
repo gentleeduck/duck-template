@@ -1,4 +1,5 @@
-use std::{path::Path, process};
+mod __test__;
+use std::{error::Error, path::Path};
 
 use crate::{
   config::{config_structure::Variant, read_config, serialize_config, write_config},
@@ -9,11 +10,14 @@ use crate::{
 
 pub mod create_variant_structure;
 
-pub fn create_variant_command(create_variant: &create_variant_structure::CreateVariant) {
+pub fn create_variant_command(
+  create_variant: &create_variant_structure::CreateVariant,
+) -> Result<String, Box<dyn Error>> {
   log(
     LogLevel::Info,
     &format!("🛠 Creating variant... {:?}", create_variant.name),
   );
+
   let str_buf = read_config(&create_variant.config);
   let mut config = serialize_config(&str_buf);
 
@@ -24,11 +28,7 @@ pub fn create_variant_command(create_variant: &create_variant_structure::CreateV
   };
 
   if create_variant.source.is_empty() {
-    log(
-      crate::logger::LogLevel::Error,
-      &format!("Please Pass source argument [ --source | -s ] to the command"),
-    );
-    process::exit(1)
+    return Err("Missing --source/-s argument.".into());
   }
 
   let root = Path::new(&create_variant.source);
@@ -42,8 +42,9 @@ pub fn create_variant_command(create_variant: &create_variant_structure::CreateV
   };
 
   config.variants.push(variant);
-
   write_config(&create_variant.config, &config);
 
   log(LogLevel::Success, &format!("🛠 Created variant {}...", name));
+
+  Ok(name)
 }

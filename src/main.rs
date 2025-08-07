@@ -8,11 +8,11 @@ mod logger;
 mod parse_commands;
 mod template;
 
-use crate::config::fetch_config::curl_if_valid_url;
 use crate::create_command::create_command;
 use crate::create_variant_command::create_variant_command;
 use crate::help_command::execute_help_command;
 use crate::init_command::init_command;
+use crate::logger::{log, LogLevel};
 use crate::parse_commands::{get_commands, Command};
 
 const CLI_NAME: &str = "@duck-template";
@@ -43,7 +43,10 @@ fn main() {
         create_command(&create);
       },
       Command::CreateVariant(create_variant) => {
-        create_variant_command(&create_variant);
+        if let Err(err) = create_variant_command(&create_variant) {
+          log(LogLevel::Error, &err.to_string());
+          std::process::exit(1);
+        }
       },
       Command::Help => {
         execute_help_command(CLI_NAME, CLI_DESCRIPTION, CLI_VERSION);

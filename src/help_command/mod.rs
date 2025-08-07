@@ -1,3 +1,4 @@
+mod __test__;
 use crate::parse_commands::commands_structure::{FlagHelp, ALL_COMMANDS, GLOBAL_FLAGS};
 
 pub fn execute_help_command(cli_name: &str, cli_description: &str, cli_version: &str) {

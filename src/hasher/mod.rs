@@ -1,3 +1,4 @@
+mod __test__;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 const CHARSET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

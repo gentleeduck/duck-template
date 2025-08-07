@@ -1,3 +1,4 @@
+mod __test__;
 pub mod commands_structure;
 pub mod get_flag_value;
 

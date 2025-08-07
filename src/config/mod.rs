@@ -1,3 +1,4 @@
+mod __test__;
 pub mod config_structure;
 pub mod fetch_config;
 

@@ -1,3 +1,4 @@
+mod __test__;
 use std::{collections::HashMap, fs, path::Path, process};
 
 use crate::{

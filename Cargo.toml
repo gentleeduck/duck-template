@@ -11,9 +11,11 @@ keywords = ["cli", "tool", "template"]
 
 
 [dependencies]
+httpmock = "0.7.0"
 rand = "0.9.2"
 reqwest = { version = "0.12.22", features = ["blocking"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.142"
+tempfile = "3.20.0"
 url = "2.5.4"
 
