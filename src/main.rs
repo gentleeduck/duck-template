@@ -13,12 +13,12 @@ use crate::{
   create_variant_command::create_variant_command,
   help_command::execute_help_command,
   init_command::init_command,
-  logger::{LogLevel, log},
-  parse_commands::{Command, get_commands},
+  logger::{log, LogLevel},
+  parse_commands::{get_commands, Command},
 };
 
 const CLI_NAME: &str = "@duck-template";
-const CLI_VERSION: &str = "1.0.4";
+const CLI_VERSION: &str = "1.0.5";
 const CLI_DESCRIPTION: &str = "Generate and manage project templates with ease";
 
 fn main() {
