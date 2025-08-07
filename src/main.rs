@@ -8,6 +8,7 @@ mod logger;
 mod parse_commands;
 mod template;
 
+use crate::config::fetch_config::curl_if_valid_url;
 use crate::create_command::create_command;
 use crate::create_variant_command::create_variant_command;
 use crate::help_command::execute_help_command;

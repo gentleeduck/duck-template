@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use std::path::Path;
 
 use crate::config::config_structure::Source;
-use crate::config::{read_config, serialize_config};
+use crate::config::get_config;
 use crate::create_command::create_structure::Create;
 use crate::logger::{log, LogLevel};
 use crate::template::replace_args;
@@ -12,21 +12,7 @@ use crate::template::replace_args;
 pub fn create_command(create: &Create) {
   log(LogLevel::Info, "🛠 Creating project...");
 
-  if create.config.is_empty() {
-    log(LogLevel::Error, "🦆 No config file provided.");
-    log(
-      LogLevel::Info,
-      "👉 Use `@duck-template init` to create a new template.",
-    );
-    log(
-      LogLevel::Info,
-      "👉 Use `@duck-template create` to create a new project.",
-    );
-    std::process::exit(1);
-  }
-
-  let str_buf = read_config(&create.config);
-  let config = serialize_config(&str_buf);
+  let config = get_config(&create.config);
 
   let outdir = if create.outdir.is_empty() {
     &config.outdir.unwrap_or(String::from("./duck-template-dir"))
