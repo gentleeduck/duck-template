@@ -56,7 +56,7 @@ pub const CREATE_VARIANT_FLAGS: &[FlagHelp] = &[
   FlagHelp {
     long: "--ignore",
     short: "-i",
-    description: "",
+    description: "Comma-separated list of files or directories to ignore",
     takes_value: true,
   },
 ];
