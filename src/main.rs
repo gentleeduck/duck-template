@@ -13,8 +13,8 @@ use crate::{
   create_variant_command::create_variant_command,
   help_command::execute_help_command,
   init_command::init_command,
-  logger::{log, LogLevel},
-  parse_commands::{get_commands, Command},
+  logger::{LogLevel, log},
+  parse_commands::{Command, get_commands},
 };
 
 const CLI_NAME: &str = "@duck-template";
