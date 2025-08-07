@@ -10,6 +10,10 @@ use crate::{
 pub mod create_variant_structure;
 
 pub fn create_variant_command(create_variant: &create_variant_structure::CreateVariant) {
+  log(
+    LogLevel::Info,
+    &format!("🛠 Creating variant... {:?}", create_variant.name),
+  );
   let str_buf = read_config(&create_variant.config);
   let mut config = serialize_config(&str_buf);
 
@@ -27,7 +31,9 @@ pub fn create_variant_command(create_variant: &create_variant_structure::CreateV
     process::exit(1)
   }
 
-  let src_structure = parse_source(Path::new(&create_variant.source));
+  let root = Path::new(&create_variant.source);
+  println!("🛠 Parsing source...");
+  let src_structure = parse_source(root, root);
 
   let variant = Variant {
     name: name.clone(),
@@ -39,8 +45,5 @@ pub fn create_variant_command(create_variant: &create_variant_structure::CreateV
 
   write_config(&create_variant.config, &config);
 
-  log(
-    LogLevel::Success,
-    &format!("🛠 Creating variant {}...", name),
-  );
+  log(LogLevel::Success, &format!("🛠 Created variant {}...", name));
 }

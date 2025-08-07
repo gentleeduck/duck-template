@@ -20,7 +20,3 @@ pub fn generate_id() -> String {
 
   id
 }
-
-fn main() {
-  println!("ID: {}", generate_id());
-}

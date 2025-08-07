@@ -21,6 +21,7 @@ pub enum Command {
   CreateVariant(CreateVariant),
   Help,
   Version,
+  #[allow(dead_code)]
   Unknown(String),
 }
 
