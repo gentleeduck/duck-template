@@ -27,6 +27,7 @@ pub fn init_command(init: &Init) {
         description: "Wise decisions, powered by types.".to_string(),
         outdir: Some("./duck-template-dir".to_string()),
         args: Some(args.clone()),
+        ignore: Some(vec!["node_modules".to_string(), "dist".to_string()]),
         variants: vec![
             Variant {
                 name: "init".to_string(),

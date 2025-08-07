@@ -31,9 +31,17 @@ pub fn create_variant_command(
     return Err("Missing --source/-s argument.".into());
   }
 
+  let total_ignore: Vec<String> = vec![
+    create_variant.ignore.clone(),
+    config.ignore.clone().unwrap_or(Vec::new()),
+  ]
+  .concat();
+
+  println!("{:?}", total_ignore);
+
   let root = Path::new(&create_variant.source);
   println!("🛠 Parsing source...");
-  let src_structure = parse_source(root, root);
+  let src_structure = parse_source(root, root, &create_variant.ignore);
 
   let variant = Variant {
     name: name.clone(),

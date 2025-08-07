@@ -92,6 +92,8 @@ pub fn render_source(src: &[Source], outdir: &Path, cli_args: &HashMap<String, S
 
         render_source(&folder.children, outdir, cli_args);
       },
+
+      Source::Skip => (),
     }
   }
 }

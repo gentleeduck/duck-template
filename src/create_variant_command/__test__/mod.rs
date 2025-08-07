@@ -52,6 +52,7 @@ mod tests {
       source: source_path.clone(),
       config: config_path.clone(),
       description: "This is a test variant.".to_string(),
+      ignore: vec![],
     };
 
     // Run command

@@ -34,6 +34,14 @@
         "type": "string"
       }
     },
+    "ignore": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of paths, directories, or patterns to ignore during processing",
+      "default": []
+    },
     "variants": {
       "type": "array",
       "items": {

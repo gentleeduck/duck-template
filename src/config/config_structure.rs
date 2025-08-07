@@ -13,6 +13,8 @@ pub struct Config {
   pub variants: Vec<Variant>,
   #[serde(default)]
   pub args: Option<HashMap<String, String>>,
+  #[serde(default)]
+  pub ignore: Option<Vec<String>>,
 }
 
 #[derive(Debug, Deserialize, Clone, Serialize)]
@@ -29,6 +31,7 @@ pub enum Source {
   File(File),
   #[serde(rename = "folder")]
   Folder(Folder),
+  Skip,
 }
 
 #[derive(Debug, Deserialize, Clone, Serialize)]

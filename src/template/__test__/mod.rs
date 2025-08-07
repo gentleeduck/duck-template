@@ -6,7 +6,7 @@ mod tests {
     io::Write,
   };
 
-  use tempfile::{NamedTempFile, tempdir};
+  use tempfile::{tempdir, NamedTempFile};
 
   use crate::{
     config::config_structure::Source,
@@ -46,13 +46,12 @@ mod tests {
     let path = file.path();
     let root = path.parent().unwrap();
 
-    let source = parse_source(path, root);
+    let source = parse_source(path, root, &vec![]);
     match source {
       Source::File(f) => {
-        assert!(
-          f.path
-            .ends_with(file.path().file_name().unwrap().to_str().unwrap())
-        );
+        assert!(f
+          .path
+          .ends_with(file.path().file_name().unwrap().to_str().unwrap()));
         assert!(f.content.contains("duck = true"));
         assert_eq!(f.args, Some(vec![]));
       },
@@ -63,7 +62,7 @@ mod tests {
   #[test]
   fn test_parse_source_empty_folder() {
     let dir = tempdir().unwrap();
-    let source = parse_source(dir.path(), dir.path());
+    let source = parse_source(dir.path(), dir.path(), &vec![]);
 
     match source {
       Source::Folder(folder) => {
@@ -85,7 +84,7 @@ mod tests {
     let file_path = nested_dir.join("settings.toml");
     fs::write(&file_path, "key = \"value\"").unwrap();
 
-    let source = parse_source(root, root);
+    let source = parse_source(root, root, &vec![]);
     match source {
       Source::Folder(folder) => {
         assert_eq!(folder.path, "");
@@ -123,7 +122,7 @@ mod tests {
     let hidden_file = dir.path().join(".hidden");
     fs::write(&hidden_file, "secret").unwrap();
 
-    let source = parse_source(dir.path(), dir.path());
+    let source = parse_source(dir.path(), dir.path(), &vec![]);
     match source {
       Source::Folder(folder) => {
         assert_eq!(folder.children.len(), 0);

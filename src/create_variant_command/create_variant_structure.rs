@@ -10,6 +10,7 @@ pub struct CreateVariant {
   pub source: String,
   pub config: String,
   pub description: String,
+  pub ignore: Vec<String>,
 }
 
 impl CreateVariant {
@@ -19,6 +20,10 @@ impl CreateVariant {
       source: get_command_value("--source", "-s", raw_args),
       config: get_command_value("--config", "-c", raw_args),
       description: get_command_value("--description", "-d", raw_args),
+      ignore: get_command_value("--ignore", "-i", raw_args)
+        .split(',')
+        .map(String::from)
+        .collect(),
     }
   }
 }
@@ -46,6 +51,12 @@ pub const CREATE_VARIANT_FLAGS: &[FlagHelp] = &[
     long: "--description",
     short: "-d",
     description: "A short human-readable description for the variant, explaining its purpose or differences from other variants.",
+    takes_value: true,
+  },
+  FlagHelp {
+    long: "--ignore",
+    short: "-i",
+    description: "",
     takes_value: true,
   },
 ];
