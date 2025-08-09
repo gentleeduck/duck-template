@@ -64,7 +64,7 @@ mod tests {
 
     let mut raw_args = HashMap::new();
     raw_args.insert("--variant".to_string(), "basic".to_string());
-    raw_args.insert("--outidr".to_string(), outdir_path.clone());
+    raw_args.insert("--outdir".to_string(), outdir_path.clone());
     raw_args.insert("--config".to_string(), config_path.clone());
     raw_args.insert(
       "--args".to_string(),

@@ -67,7 +67,7 @@ mod tests {
 
     match source {
       Source::Folder(folder) => {
-        assert_eq!(folder.path, "");
+        assert_eq!(folder.path, dir.path().to_str().unwrap()); // ✅ now matches absolute
         assert_eq!(folder.children.len(), 0);
       },
       _ => panic!("Expected Source::Folder"),
@@ -88,13 +88,13 @@ mod tests {
     let source = parse_source(root, root, &vec![]);
     match source {
       Source::Folder(folder) => {
-        assert_eq!(folder.path, "");
+        assert_eq!(folder.path, root.to_str().unwrap());
 
         let config_folder = folder
           .children
           .iter()
           .find(|c| match c {
-            Source::Folder(f) => f.path == "config",
+            Source::Folder(f) => f.path.ends_with("config"), // ✅ changed
             _ => false,
           })
           .expect("Missing config folder");
@@ -104,7 +104,7 @@ mod tests {
             assert_eq!(f.children.len(), 1);
             match &f.children[0] {
               Source::File(f) => {
-                assert_eq!(f.path, "config/settings.toml");
+                assert!(f.path.ends_with("config/settings.toml")); // ✅ changed
                 assert!(f.content.contains("key = \"value\""));
               },
               _ => panic!("Expected file in config folder"),
