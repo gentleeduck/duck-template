@@ -6,7 +6,7 @@ use std::{collections::HashMap, path::Path};
 use crate::{
   config::{config_structure::Source, get_config},
   create_command::create_structure::Create,
-  logger::{log, LogLevel},
+  logger::{LogLevel, log},
   template::replace_args,
 };
 

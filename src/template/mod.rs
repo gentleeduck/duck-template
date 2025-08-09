@@ -20,14 +20,21 @@ pub fn replace_args(content: &str, args: &HashMap<String, String>, file_args: &[
 }
 
 pub fn parse_source(path: &Path, root: &Path, ignore: &Vec<String>) -> Source {
-  let rel_path = path.strip_prefix(root).unwrap_or(path);
+  let rel_path = if path.to_string_lossy() == String::from("./")
+    || path.to_string_lossy() == String::from(".")
+  {
+    path.strip_prefix(root).unwrap_or(path)
+  } else {
+    path
+  };
+
   let rel_path_str = if rel_path.as_os_str().is_empty() {
     "".to_string()
   } else {
     rel_path.to_string_lossy().to_string()
   };
 
-  // ✅ Skip if the relative path (file or folder) is in the ignore list
+  // Skip if the relative path (file or folder) is in the ignore list
   if ignore
     .iter()
     .any(|ignore_item| rel_path_str == *ignore_item)
@@ -57,10 +64,10 @@ pub fn parse_source(path: &Path, root: &Path, ignore: &Vec<String>) -> Source {
           }
         }
 
-        // 🧠 Recursively parse child
+        // Recursively parse child
         let child = parse_source(&child_path, root, ignore);
 
-        // ✅ Skip if child was skipped
+        // Skip if child was skipped
         if !matches!(child, Source::Skip) {
           children.push(child);
         }

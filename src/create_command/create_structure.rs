@@ -4,7 +4,7 @@ use serde::Serialize;
 use serde_json;
 
 use crate::{
-  logger::{log, LogLevel},
+  logger::{LogLevel, log},
   parse_commands::{commands_structure::FlagHelp, get_flag_value::get_command_value},
 };
 
