@@ -6,7 +6,7 @@ use std::{collections::HashMap, path::Path};
 use crate::{
   config::{config_structure::Source, get_config},
   create_command::create_structure::Create,
-  logger::{LogLevel, log},
+  logger::{log, LogLevel},
   template::replace_args,
 };
 
@@ -20,6 +20,7 @@ pub fn create_command(create: &Create) {
   } else {
     &create.outdir
   };
+  println!("{:?}", create);
 
   let outdir_path = Path::new(outdir);
 

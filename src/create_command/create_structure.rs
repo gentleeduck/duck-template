@@ -4,7 +4,7 @@ use serde::Serialize;
 use serde_json;
 
 use crate::{
-  logger::{LogLevel, log},
+  logger::{log, LogLevel},
   parse_commands::{commands_structure::FlagHelp, get_flag_value::get_command_value},
 };
 
@@ -35,7 +35,7 @@ impl Create {
 
     Self {
       variant: get_command_value("--variant", "-v", raw_args),
-      outdir: get_command_value("--outidr", "-o", raw_args),
+      outdir: get_command_value("--outdir", "-d", raw_args),
       config: get_command_value("--config", "-c", raw_args),
       args: args_map,
     }

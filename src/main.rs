@@ -13,8 +13,8 @@ use crate::{
   create_variant_command::create_variant_command,
   help_command::execute_help_command,
   init_command::init_command,
-  logger::{LogLevel, log},
-  parse_commands::{Command, get_commands},
+  logger::{log, LogLevel},
+  parse_commands::{get_commands, Command},
 };
 
 const CLI_NAME: &str = "@duck-template";
@@ -30,7 +30,7 @@ fn main() {
       "❌ No command provided. Use `{}` help to see available commands.",
       CLI_NAME
     );
-    std::process::exit(1);
+    std::process::exit(1)
   }
 
   for command in options {
