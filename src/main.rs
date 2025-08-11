@@ -56,13 +56,4 @@ fn main() {
       _ => {},
     }
   }
-
-  let x: i32 = 3;
-
-  {
-    let y: i32 = 4;
-  }
-
-  println!("{}", x);
-  println!("{}", y);
 }
