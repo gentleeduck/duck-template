@@ -18,7 +18,7 @@ use crate::{
 };
 
 const CLI_NAME: &str = "@duck-template";
-const CLI_VERSION: &str = "0.1.7";
+const CLI_VERSION: &str = "0.1.8";
 const CLI_DESCRIPTION: &str = "Generate and manage project templates with ease";
 
 fn main() {
@@ -56,4 +56,13 @@ fn main() {
       _ => {},
     }
   }
+
+  let x: i32 = 3;
+
+  {
+    let y: i32 = 4;
+  }
+
+  println!("{}", x);
+  println!("{}", y);
 }

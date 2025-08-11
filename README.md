@@ -1,18 +1,22 @@
+<p align="center">
+  <img src="./public/logo.png" alt="Duck UI Logo" width="200" style=""/>
+</p>
+
 # 🦆 duck-template
 
-> Generate and manage project templates with ease — fast, customizable, and powered by Rust.
+> **Fast, customizable Rust-powered project scaffolding — because smart devs don’t start from scratch.**
 
-**`duck-template`** helps you scaffold and manage projects using structured JSON configurations and flexible CLI commands. With variant support, remote configs, and dynamic flag injection, it gives you full control over how projects and their files are created.
+`duck-template` helps you scaffold and manage projects using structured JSON configurations and flexible CLI commands. With **variant** support, **remote configs**, and **dynamic flag injection**, it gives you complete control over how projects and files are created.
 
 ---
 
 ## ✨ Features
 
-* 🧱 **Template-based project scaffolding** with JSON
-* 🏗️ **Variants** to support different project layouts (e.g., `api`, `web`, `cli`)
-* 🌍 **Remote or local config** support (pass a URL or file path)
+* 🧱 **Template-based scaffolding** using JSON
+* 🏗️ **Variants** for different project layouts (`api`, `web`, `cli`, etc.)
+* 🌍 **Local or remote configs** (URL or file path)
 * 🧠 **Unified flag parsing** with dynamic injection into templates
-* 🪶 **Blazing fast** — written in Rust
+* ⚡ **Blazing fast** — written in Rust
 * 📦 **Modular commands**: `init`, `create`, and `create-variant`
 
 ---
@@ -36,8 +40,8 @@ duck-template init --name my-app
 This will:
 
 * Create a directory `my-app/`
-* Inject the name into templated files
-* Use your local `duck-template.json` file
+* Inject the project name into template files
+* Use your local `duck-template.json`
 
 ---
 
@@ -47,13 +51,13 @@ This will:
 duck-template create --variant api --config ./duck-template.json
 ```
 
-Or use a **remote config**:
+With a **remote config**:
 
 ```bash
 duck-template create --variant api --config https://example.com/template.json
 ```
 
-Optional extras:
+With extra arguments:
 
 ```bash
 duck-template create \
@@ -84,7 +88,7 @@ This will:
 
 ## 🧩 Configuration Format
 
-You define templates in a `duck-template.json` file like this:
+Templates are defined in a `duck-template.json` file:
 
 ```json
 {
@@ -114,40 +118,34 @@ You define templates in a `duck-template.json` file like this:
 
 ## 🛠️ Command Reference
 
-### 🔧 `init`
-
-Create a new project directory.
+### **`init`** — Create a New Project Directory
 
 ```bash
 duck-template init --name my-app
 ```
 
-| Flag           | Description                                                         |
-| -------------- | ------------------------------------------------------------------- |
-| `-n`, `--name` | Name of the project. Used for the folder name and inside templates. |
+| Flag           | Description                                               |
+| -------------- | --------------------------------------------------------- |
+| `-n`, `--name` | Project name (used for folder name and inside templates). |
 
 ---
 
-### 🏗️ `create`
-
-Generate files from a predefined variant.
+### **`create`** — Generate Files from a Variant
 
 ```bash
 duck-template create --variant api --config ./config.json
 ```
 
-| Flag              | Description                                                       |
-| ----------------- | ----------------------------------------------------------------- |
-| `-v`, `--variant` | Name of the variant to generate                                   |
-| `-d`, `--outdir`  | Directory to write output (defaults to `./`)                      |
-| `-c`, `--config`  | Local or remote JSON config file                                  |
-| `-a`, `--args`    | Key=value overrides for template injection (e.g., `author=Ahmed`) |
+| Flag              | Description                                                 |
+| ----------------- | ----------------------------------------------------------- |
+| `-v`, `--variant` | Name of the variant to generate                             |
+| `-d`, `--outdir`  | Output directory (defaults to `./`)                         |
+| `-c`, `--config`  | Local or remote JSON config                                 |
+| `-a`, `--args`    | Key=value overrides for template variables (`author=Ahmed`) |
 
 ---
 
-### 🧪 `create-variant`
-
-Package a folder into a new variant.
+### **`create-variant`** — Package a Folder into a Variant
 
 ```bash
 duck-template create-variant \
@@ -157,12 +155,12 @@ duck-template create-variant \
   --config ./duck-template.json
 ```
 
-| Flag                  | Description                                     |
-| --------------------- | ----------------------------------------------- |
-| `-s`, `--source`      | Source directory or file                        |
-| `-n`, `--name`        | Unique name for the variant                     |
-| `-d`, `--description` | Short explanation of what this variant is for   |
-| `-c`, `--config`      | Optional path to update an existing config file |
+| Flag                  | Description                                   |
+| --------------------- | --------------------------------------------- |
+| `-s`, `--source`      | Source directory or file                      |
+| `-n`, `--name`        | Unique name for the variant                   |
+| `-d`, `--description` | Short description of the variant              |
+| `-c`, `--config`      | Optional path to an existing config to update |
 
 ---
 
@@ -174,7 +172,7 @@ Given:
 duck-template init --name wiseman
 ```
 
-And this config:
+With config:
 
 ```json
 {
@@ -191,7 +189,7 @@ And this config:
 }
 ```
 
-The result will be:
+Result:
 
 ```
 output/
@@ -208,19 +206,21 @@ duck-template --help
 duck-template --version
 ```
 
-Also works with subcommands like:
+Also works with subcommands:
 
 ```bash
 duck-template init --help
 duck-template create-variant --help
 ```
 
+---
 
-## 🙌 Contributions
+## 🤝 Contributions
 
 Pull requests, issues, and suggestions are welcome!
-Feel free to fork, tweak, and share your own templates too.
+Fork, tweak, and share your own templates.
 
 ---
 
-> 🦆 **duck-template** — because smart devs don’t start from scratch.
+**🦆 duck-template** — *smart scaffolding for smart developers.*
+
