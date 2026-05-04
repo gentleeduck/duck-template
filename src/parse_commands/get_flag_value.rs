@@ -9,7 +9,7 @@ pub fn find_command(name: &str) -> Option<&'static CommandHelp> {
 pub fn find_flag<'a>(flags: &'a [FlagHelp], name: &str) -> Option<&'a FlagHelp> {
   flags
     .iter()
-    .find(|f| f.long == name || f.short.contains(&name))
+    .find(|f| f.long == name || f.short.contains(name))
 }
 
 pub fn get_command_value(

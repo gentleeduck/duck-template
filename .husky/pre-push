@@ -10,8 +10,8 @@ cargo fmt --all -- --check
 echo "[husky] (2/4) cargo clippy --workspace --all-targets --all-features -- -D warnings"
 cargo clippy --workspace --all-targets --all-features -- -D warnings
 
-echo "[husky] (3/4) cargo test --workspace --features pretty-code"
-cargo test --workspace --features pretty-code
+echo "[husky] (3/4) cargo test --workspace"
+cargo test --workspace
 
 echo "[husky] (4/4) cargo check feature combos (no-default + all-features)"
 cargo check --workspace --no-default-features

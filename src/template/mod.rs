@@ -20,9 +20,7 @@ pub fn replace_args(content: &str, args: &HashMap<String, String>, file_args: &[
 }
 
 pub fn parse_source(path: &Path, root: &Path, ignore: &Vec<String>) -> Source {
-  let rel_path = if path.to_string_lossy() == String::from("./")
-    || path.to_string_lossy() == String::from(".")
-  {
+  let rel_path = if path.to_string_lossy() == "./" || path.to_string_lossy() == "." {
     path.strip_prefix(root).unwrap_or(path)
   } else {
     path
@@ -35,10 +33,7 @@ pub fn parse_source(path: &Path, root: &Path, ignore: &Vec<String>) -> Source {
   };
 
   // Skip if the relative path (file or folder) is in the ignore list
-  if ignore
-    .iter()
-    .any(|ignore_item| rel_path_str == *ignore_item)
-  {
+  if ignore.contains(&rel_path_str) {
     return Source::Skip;
   }
 
@@ -53,24 +48,22 @@ pub fn parse_source(path: &Path, root: &Path, ignore: &Vec<String>) -> Source {
   } else if path.is_dir() {
     let mut children = vec![];
 
-    for entry in fs::read_dir(path).expect("Failed to read folder") {
-      if let Ok(entry) = entry {
-        let child_path = entry.path();
+    for entry in fs::read_dir(path).expect("Failed to read folder").flatten() {
+      let child_path = entry.path();
 
-        // Skip hidden files/folders (optional)
-        if let Some(name) = child_path.file_name().and_then(|n| n.to_str()) {
-          if name.starts_with('.') {
-            continue;
-          }
-        }
+      // Skip hidden files/folders (optional)
+      if let Some(name) = child_path.file_name().and_then(|n| n.to_str())
+        && name.starts_with('.')
+      {
+        continue;
+      }
 
-        // Recursively parse child
-        let child = parse_source(&child_path, root, ignore);
+      // Recursively parse child
+      let child = parse_source(&child_path, root, ignore);
 
-        // Skip if child was skipped
-        if !matches!(child, Source::Skip) {
-          children.push(child);
-        }
+      // Skip if child was skipped
+      if !matches!(child, Source::Skip) {
+        children.push(child);
       }
     }
 

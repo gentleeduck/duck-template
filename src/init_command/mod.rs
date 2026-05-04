@@ -1,8 +1,6 @@
 mod __test__;
 use std::collections::HashMap;
 
-use serde_json;
-
 use crate::{
   config::config_structure::{Config, File, Folder, Source, Variant},
   init_command::init_structure::Init,
@@ -99,7 +97,7 @@ pub fn init_command(init: &Init) {
     serde_json::to_string_pretty(&template).expect("Failed to serialize template config to JSON");
 
   // Write to file
-  match std::fs::write(&format!("{}-template.json", init.name), json) {
+  match std::fs::write(format!("{}-template.json", init.name), json) {
     Ok(_) => {
       log(LogLevel::Info, "🦆 Project initialized successfully.");
     },

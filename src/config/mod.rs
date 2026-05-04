@@ -62,7 +62,7 @@ pub fn read_config(path: &String) -> String {
   };
   let mut buf = String::new();
 
-  return match file.read_to_string(&mut buf) {
+  match file.read_to_string(&mut buf) {
     Ok(_) => buf,
     Err(e) => {
       log(
@@ -71,9 +71,9 @@ pub fn read_config(path: &String) -> String {
       );
       process::exit(1);
     },
-  };
+  }
 }
 
-pub fn serialize_config(str_buf: &String) -> config_structure::Config {
-  return serde_json::from_str(str_buf).unwrap();
+pub fn serialize_config(str_buf: &str) -> config_structure::Config {
+  serde_json::from_str(str_buf).unwrap()
 }

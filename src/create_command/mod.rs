@@ -68,7 +68,7 @@ pub fn render_source(src: &[Source], outdir: &Path, cli_args: &HashMap<String, S
         }
 
         let final_content = if let Some(args) = &file.args {
-          replace_args(file.content.as_str(), cli_args, &args)
+          replace_args(file.content.as_str(), cli_args, args)
         } else {
           file.content.clone()
         };

@@ -34,17 +34,14 @@ pub fn get_commands(args: Vec<String>) -> Vec<Command> {
     let arg = &args[i];
 
     // Global flags
-    match find_flag(GLOBAL_FLAGS, arg) {
-      Some(flag) => {
-        if flag.long == "--help" {
-          commands.push(Command::Help);
-        } else if flag.long == "--version" {
-          commands.push(Command::Version);
-        }
-        i += 1;
-        continue;
-      },
-      _ => (),
+    if let Some(flag) = find_flag(GLOBAL_FLAGS, arg) {
+      if flag.long == "--help" {
+        commands.push(Command::Help);
+      } else if flag.long == "--version" {
+        commands.push(Command::Version);
+      }
+      i += 1;
+      continue;
     }
 
     // Check for known command
