@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/logo.png" alt="duck-template" width="160"/>
+  <img src="./public/logo-dark.svg" alt="duck-template" width="120"/>
 </p>
 
 <h1 align="center">duck-template</h1>
