@@ -10,9 +10,10 @@
 
 <p align="center">
   <a href="./LICENSE">MIT</a> -
+  <a href="./CHANGELOG.md">Changelog</a> -
+  <a href="./CONTRIBUTING.md">Contributing</a> -
   <a href="https://crates.io/crates/duck-template">crates.io</a> -
-  <a href="https://docs.rs/duck-template">docs.rs</a> -
-  <a href="https://github.com/gentleeduck/duck-template/issues">issues</a>
+  <a href="https://docs.rs/duck-template">docs.rs</a>
 </p>
 
 <p align="center">
@@ -41,23 +42,13 @@ The generator reads a template descriptor (local file or remote URL)
 and emits the project tree from JSON. Flags are injected dynamically
 into template placeholders.
 
-## Features
-
-| feature | what |
-| --- | --- |
-| JSON templates | declarative project + file scaffold |
-| Variants | per-template layouts (`cli`, `api`, `web`, ...) |
-| Local or remote configs | path or URL |
-| Dynamic flag injection | flags become template vars |
-| Modular commands | `init`, `create`, `create-variant` |
-
 ## Commands
 
-```sh
-duck-template init                      # interactive setup
-duck-template create <name> [--variant] # generate from current template
-duck-template create-variant <name>     # add a variant under the template
-```
+| Command | What |
+| --- | --- |
+| `duck-template init` | interactive setup |
+| `duck-template create <name> [--variant]` | generate from current template |
+| `duck-template create-variant <name>` | add a variant under the template |
 
 ## Schema
 
@@ -67,8 +58,8 @@ A template is a JSON file with this shape:
 {
   "name": "my-template",
   "variants": {
-    "cli":  { "files": [ ... ] },
-    "web":  { "files": [ ... ] }
+    "cli":  { "files": [ ] },
+    "web":  { "files": [ ] }
   },
   "flags": { "name": "string", "rust_version": "string" }
 }
@@ -76,7 +67,7 @@ A template is a JSON file with this shape:
 
 See [`public/schema.json`](public/schema.json) for the full schema.
 
-## Build from source
+## Build
 
 ```sh
 git clone https://github.com/gentleeduck/duck-template
@@ -85,11 +76,16 @@ cargo build --release
 ./target/release/duck-template --help
 ```
 
+## Docs
+
+- [crates.io](https://crates.io/crates/duck-template)
+- [docs.rs](https://docs.rs/duck-template)
+- [duck-ui website](https://github.com/gentleeduck/duck-ui) - cross-linked
+
 ## Contributing
 
 PR checklist + style notes in [`CONTRIBUTING.md`](CONTRIBUTING.md).
-Security issues: [`SECURITY.md`](SECURITY.md).
-Behaviour: [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
+Security: [`SECURITY.md`](SECURITY.md). Behaviour: [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
 
 ## License
 
